@@ -1,0 +1,20 @@
+# Render.com blueprint: New + > Blueprint > pick this repo. Add MONGODB_URI when asked.
+services:
+  - type: web
+    name: wifimap-api
+    runtime: node
+    plan: free
+    buildCommand: npm install --include=dev && npm run build
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_VERSION
+        value: 26
+      - key: MONGODB_URI
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: DATA_KEY
+        generateValue: true
+      - key: PW_PEPPER
+        generateValue: true
